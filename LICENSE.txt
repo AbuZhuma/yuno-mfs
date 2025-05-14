@@ -1,0 +1,17 @@
+Proprietary License
+
+Copyright (c) 2025 Abdyrakhman Dzhumagulov Numanowitch
+
+This software is licensed, not sold.
+
+You are granted a non-transferable, non-exclusive right to use this software only for personal or internal business purposes.
+
+You may NOT:
+- Modify, copy, publish, or distribute this software
+- Include this software in other projects
+- Reverse engineer or decompile any part of the software
+- Sell or sublicense the software to third parties
+
+All rights are reserved by the copyright holder.
+
+Unauthorized use or distribution of this software is strictly prohibited and may result in legal action.
