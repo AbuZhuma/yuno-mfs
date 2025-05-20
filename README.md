@@ -1,7 +1,5 @@
 # Yuno - Real-Time Project Synchronization
 
-![Yuno Logo]
-
 Yuno is the first NPM package for real-time peer-to-peer project synchronization, enabling teams to code together like Google Docs but for entire projects.
 Yuno lets you know what your team is building - as they build it.
 

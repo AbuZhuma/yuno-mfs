@@ -3,7 +3,7 @@ const fs = require("fs").promises
 
 const onExit = async () => {
       try {
-            await fs.writeFile("yuno.changes.json", JSON.stringify(Object.fromEntries(changesHash)))
+            await fs.writeFile(".yuno/yuno.changes.json", JSON.stringify(Object.fromEntries(changesHash)))
             process.exit()
       } catch (error) {
             process.exit()

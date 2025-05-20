@@ -6,7 +6,8 @@ const watcherIgnore = [
       '**/bin/**',
       '**/yuno.json',
       '**/lastChanges.json',
-      '**/yuno.changes.json'
+      '**/yuno.changes.json',
+      ".yuno"
 ];
 
 module.exports = { watcherIgnore }

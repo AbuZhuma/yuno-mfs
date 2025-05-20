@@ -7,8 +7,8 @@ const { changesHash } = require('../globals');
 
 
 function setChanges() {
-  const filePath = 'yuno.changes.json';
-
+  const filePath = '.yuno/yuno.changes.json';
+  
   try {
     if (!fs.existsSync(filePath)) {
       fs.writeFileSync(filePath, '{}');
@@ -32,7 +32,7 @@ function setChanges() {
   }
 }
 function isFileExist(path) {
-    return fs.existsSync(path)
+  return fs.existsSync(path)
 }
 function ensureFileExistsSync(filePath, initialContent = '', createFolders = true) {
   try {
@@ -66,10 +66,14 @@ function checkCodeErrors(filePath, command) {
 }
 
 const getGlobalIp = async (name = "unknown") => {
-  const { port } = findConfig();
-  const tunnel = await localtunnel({ port: port, subdomain: name });
-  tunnel.url = "wss://" + tunnel.url.split("//")[1];
-  return tunnel.url;
+  try {
+    const { port } = findConfig();
+    const tunnel = await localtunnel({ port: port, subdomain: name });
+    tunnel.url = "wss://" + tunnel.url.split("//")[1];
+    return tunnel.url;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const getLocalIp = () => {
@@ -119,15 +123,13 @@ async function ensureDirectoryExists(filePath, watcher) {
 const userProjectRoot = process.cwd();
 
 function findConfig(pathOnly = false) {
-  const configPaths = [
-    path.join(userProjectRoot, 'yuno.json'),
-    path.join(userProjectRoot, 'yuno', 'yuno.json'),
-    path.join(__dirname, '..', 'yuno.json')
-  ];
-  for (const configPath of configPaths) {
+  const configPath = ".yuno/yuno.json"
     if (fs.existsSync(configPath)) {
       try {
         const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+        if(!config.password){
+          config.password = "free"
+        }
         if (!config.type) {
           config.type = "global"
         } else if (config.type !== "global" && config.type !== "local") {
@@ -146,7 +148,6 @@ function findConfig(pathOnly = false) {
         return null;
       }
     }
-  }
 
   console.log('⚠️ No configs found');
   return null;

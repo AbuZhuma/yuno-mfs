@@ -17,7 +17,7 @@ program
     require('../src/server').init().then(async () => {
       console.log(`🚀 Server running`);
       messangerInit()
-      ensureFileExistsSync("yuno.changes.json", "{}")
+      ensureFileExistsSync(".yuno/yuno.changes.json", "{}")
     })
       .catch(err => {
         console.error('💥 Server failed to start:', err);
@@ -36,8 +36,14 @@ program
     if (!data.room || !data.password || !data.user_id) return program.error()
     data.user_id = data.user_id + "-" + Date.now()
     data.show_logs = false
-    await fs.writeFile("yuno.json", JSON.stringify(data))
-    await fs.writeFile("yuno.changes.json", JSON.stringify({}))
+    await fs.mkdir(".yuno")
+    if(!data.password){
+      data.password = "free"
+    }
+    console.log(data);
+    
+    await fs.writeFile(".yuno/yuno.json", JSON.stringify(data))
+    await fs.writeFile(".yuno/yuno.changes.json", JSON.stringify({}))
     require('../src/server').init().then(() => {
       console.log(`🚀 Server running`);
       messangerInit()
@@ -55,6 +61,7 @@ program
     if (!data.room) return console.log("Please write room name! (--room)");
     await createRoom({ name: data.room })
   });
+
 program
   .command('help')
   .action(() => {
@@ -68,7 +75,7 @@ program
         -pr, --port <port>         Port to run the server on (default: 5050)
       
       🔰 Example usage:
-        npx yuno init -room coders1 -password coders123 -user_id [you'r name] -port 5005
+        npx yuno init --room [name] --password free --user_id [you'r name] --port 5005
       `);
   });
 program.showHelpAfterError();

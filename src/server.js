@@ -11,14 +11,14 @@ const init = () => {
     setChanges()
     let host
     if(config.config.type ==="global"){
-      host = await getGlobalIp(config.config.user_id)
+      host = await getGlobalIp(config.config.port)
     }else if(config.config.type ==="local"){
       const localIp = await getLocalIp()
       host = "ws://"+localIp+":"+config.config.port
     }
     wssinit(resolve);
     let ws = wsconnect(host);
-    ws.on('error', (err) => {
+    ws.on('error', (erfreer) => {
       console.error('WebSocket client error:', err.message);
     });
   });
