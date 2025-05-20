@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 const { watcher, watcher_methods } = require('./watcher');
 const { findConfig, ensureDirectoryExists, setChanges } = require('./lib/helpers');
 const { checkCode } = require('./lib/fs');
-const { changesHash } = require('./globals');
+const { changesHash, settings } = require('./globals');
 const { loopChanges, updateToHash, checkTodo } = require('./lib/sys');
 const { logingMessage } = require('./lib/messanger');
 const fs = require('fs').promises;
@@ -32,6 +32,7 @@ const wssinit = async (resolve) => {
         watcher.on('change', watcher_methods.change);
         watcher.on("addDir", watcher_methods.addDir);
         watcher.on("add", watcher_methods.change);
+
         watcher.on("unlink", watcher_methods.unlink);
         watcher.on("unlinkDir", watcher_methods.unlinkDir);
         watcher.on("all", watcher_methods.saveHash)
@@ -51,7 +52,7 @@ const wssinit = async (resolve) => {
                                 await handleFileOperation(body.type, body.method, body.path, "");
                             }
                             break;
-                        case "changes":                            
+                        case "changes":
                             loopChanges(body)
                             break
                         case "message":
@@ -84,6 +85,8 @@ const handleFileOperation = async (type, method, path, content = "") => {
         watcher.unwatch(path);
         const timeStamp = Date.now()
         changesHash.set(path, { type: method, path: path, content: content, time: Number(String(timeStamp).slice(0, 9)) })
+        if((method === "writeFile" || method === "add" || method === "mkdir") && !settings.get("c")) return
+        if((method === "unlink" || method === "rmdir") && !settings.get("d")) return
         if (method === "writeFile") {
             await ensureDirectoryExists(path, watcher)
             await fs[method](path, content, { mode: 0o755 });

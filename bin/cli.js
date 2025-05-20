@@ -4,7 +4,9 @@ const { version } = require('../package.json');
 const { createRoom } = require('../src/room');
 const { ensureFileExistsSync } = require('../src/lib/helpers');
 const { messangerInit } = require('../src/lib/messanger');
-const fs = require("fs").promises
+const { starter } = require('../src/starter');
+const { setRoomSettings, setting } = require('../src/setRoomSettings');
+const { clearDirectory } = require('../src/lib/reconect');
 program
   .name('yuno')
   .description('Yuno — Multi File Systems')
@@ -14,6 +16,7 @@ program
   .command('start')
   .description('Start synchronization server')
   .action(async () => {
+    await starter()
     require('../src/server').init().then(async () => {
       console.log(`🚀 Server running`);
       messangerInit()
@@ -30,20 +33,11 @@ program
   .option('-r, --room <room>', 'enter room name')
   .option('-p, --password <password>', 'enter room password')
   .option('-u, --user_id <user_id>', 'enter your id')
-  .option('-pr, --port <port>', 'choose port', "5050")
+  .option('-pr, --port <port>', 'choose port', "5001")
   .option('-t, --type <type>', 'choose type of connecting', "global")
   .action(async (data) => {
-    if (!data.room || !data.password || !data.user_id) return program.error()
-    data.user_id = data.user_id + "-" + Date.now()
-    data.show_logs = false
-    await fs.mkdir(".yuno")
-    if(!data.password){
-      data.password = "free"
-    }
-    console.log(data);
-    
-    await fs.writeFile(".yuno/yuno.json", JSON.stringify(data))
-    await fs.writeFile(".yuno/yuno.changes.json", JSON.stringify({}))
+    await clearDirectory(process.cwd())
+    await starter(data)
     require('../src/server').init().then(() => {
       console.log(`🚀 Server running`);
       messangerInit()
@@ -61,6 +55,23 @@ program
     if (!data.room) return console.log("Please write room name! (--room)");
     await createRoom({ name: data.room })
   });
+program
+  .command('acces')
+  .description('Acces for room settings')
+  .option('-r, --room <room>', 'enter room name')
+  .option('-p, --password <room>', 'enter room author password')
+  .action(async (data) => {
+    if (!data.room) return console.log("Please write room name! (--room)");
+    if (!data.password) return console.log("Please write room password! (--password)");
+
+    await setRoomSettings(data)
+  });
+program
+  .command('save')
+  .description('Save settings')
+  .action(async () => {
+    await setting()
+  });
 
 program
   .command('help')
@@ -75,7 +86,7 @@ program
         -pr, --port <port>         Port to run the server on (default: 5050)
       
       🔰 Example usage:
-        npx yuno init --room [name] --password free --user_id [you'r name] --port 5005
+        npx yuno init --room [name] --password free --user_id [you'r name]
       `);
   });
 program.showHelpAfterError();

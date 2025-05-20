@@ -120,8 +120,6 @@ async function ensureDirectoryExists(filePath, watcher) {
 }
 
 
-const userProjectRoot = process.cwd();
-
 function findConfig(pathOnly = false) {
   const configPath = ".yuno/yuno.json"
     if (fs.existsSync(configPath)) {

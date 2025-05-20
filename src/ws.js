@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 const { wsurl } = require('../configs');
-const { roomates } = require('./globals');
+const { roomates, settings } = require('./globals');
 const { findConfig, writeConfigs } = require('./lib/helpers');
 const { sendHash } = require('./lib/sys');
 const configs = findConfig()
@@ -85,6 +85,10 @@ const wsconnect = (host) => {
                 } else if (body.type === "err-password") {
                     console.log("⛔ " + body.err);
                     roomates.clear();
+                } else if (body.type === "settings") {
+                    body.settings.map((el) => {
+                        settings.set(el, true)
+                    })
                 } else if (body.type === "free") {
                     writeConfigs({ password: "free" })
                 } else {

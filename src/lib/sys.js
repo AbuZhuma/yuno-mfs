@@ -159,7 +159,7 @@ ${description.split('\n').map(line => `    ${line}`).join('\n')}
 
 
 const saveTodoToFile = async (content) => {
-      const TODO_FILE = 'todos.md';
+      const TODO_FILE = '.yuno/todos.md';
       try {
             await fs.appendFile(TODO_FILE, content);
       } catch (error) {
