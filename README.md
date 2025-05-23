@@ -66,14 +66,14 @@ Unlike cloud-based tools (Google Drive, Dropbox) or editor-specific solutions (L
 
 ## Links
 
-- [![GitHub](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/github.svg)](https://github.com/AbuZhuma/yuno-mfs) **GitHub**
-- [![NPM](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/npm.svg)](https://www.npmjs.com/package/yuno-mfs) **NPM**   
-- [![Hashnode](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/hashnode.svg)](https://hashnode.com/@abuzhuma) **Hashnode** 
-- [![Dev.to](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/devto.svg)](https://dev.to/abdyrakhman_dzhumagulov_2) **Dev.to**  
-- [![Telegram](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/telegram.svg)](https://t.me/yuno_mfs) **Telegram** 
-- [![Hacker News](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/hackernews.svg)](https://news.ycombinator.com/user?id=Abdyrahman) **Hacker News** 
-- [![YouTube](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/youtube.svg)](https://www.youtube.com/channel/UCtTG_6zWsaSHfLoiD2wQLKw) **YouTube**  
-- [📄 Документация](https://yuno.ws/docs)
+- [![GitHub](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/github.svg)](https://github.com/AbuZhuma/yuno-mfs)
+- [![NPM](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/npm.svg)](https://www.npmjs.com/package/yuno-mfs)   
+- [![Hashnode](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/hashnode.svg)](https://hashnode.com/@abuzhuma) 
+- [![Dev.to](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/devto.svg)](https://dev.to/abdyrakhman_dzhumagulov_2) 
+- [![Telegram](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/telegram.svg)](https://t.me/yuno_mfs) 
+- [![Hacker News](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/hackernews.svg)](https://news.ycombinator.com/user?id=Abdyrahman) 
+- [![YouTube](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/youtube.svg)](https://www.youtube.com/channel/UCtTG_6zWsaSHfLoiD2wQLKw) 
+- [📄 Documentation](https://yuno.ws/docs)
 
 ## License
 
