@@ -64,6 +64,17 @@ Unlike cloud-based tools (Google Drive, Dropbox) or editor-specific solutions (L
 - Instant change propagation
 - No subscription fees or account requirements
 
+## Links
+
+- [![GitHub](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/github.svg)](https://github.com/AbuZhuma/yuno-mfs) **GitHub** – исходный код и репозиторий проекта  
+- [![NPM](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/npm.svg)](https://www.npmjs.com/package/yuno-mfs) **NPM** – пакет на npm  
+- [![Hashnode](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/hashnode.svg)](https://hashnode.com/@abuzhuma) **Hashnode** – статьи и блоги  
+- [![Dev.to](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/devto.svg)](https://dev.to/abdyrakhman_dzhumagulov_2) **Dev.to** – посты и апдейты  
+- [![Telegram](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/telegram.svg)](https://t.me/yuno_mfs) **Telegram** – сообщество и обсуждения  
+- [![Hacker News](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/hackernews.svg)](https://news.ycombinator.com/user?id=Abdyrahman) **Hacker News** – профиль разработчика  
+- [![YouTube](https://raw.githubusercontent.com/AbuZhuma/assets/main/icons/youtube.svg)](https://www.youtube.com/channel/UCtTG_6zWsaSHfLoiD2wQLKw) **YouTube** – видео и демо  
+- [📄 Документация](https://yuno.ws/docs) – официальная документация
+
 ## License
 
 You are granted a non-transferable, non-exclusive right to use this software only for personal or internal business purposes.
