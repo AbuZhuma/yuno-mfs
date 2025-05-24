@@ -14,7 +14,7 @@ const starter = async(data = {room:"room name", password:"free", user_id: "user"
       if(!data.type) data.type = "global"
       if (!data.password) data.password = "free"
       if (!isYunoExist) await fs.mkdir(".yuno")
-      if (!isConfigsExist) await fs.writeFile(".yuno/yuno.json", JSON.stringify(data))
+      if (!isConfigsExist) await fs.writeFile(".yuno/yuno.json", JSON.stringify(data, null, 2))
       if (!isChangesExist) await fs.writeFile(".yuno/yuno.changes.json", JSON.stringify({}))
       setChanges()
       initOpenRooms()

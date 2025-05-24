@@ -70,7 +70,7 @@ const getGlobalIp = async (name = "unknown") => {
     const { port } = findConfig();
     const tunnel = await localtunnel({ port: port, subdomain: name });
     tunnel.url = "wss://" + tunnel.url.split("//")[1];
-    return tunnel.url;
+    return tunnel;
   } catch (error) {
     console.log(error);
   }
@@ -153,7 +153,7 @@ function findConfig(pathOnly = false) {
 async function writeConfigs(changes) {
   const newConfigs = await findConfig(true)
   const config = { ...newConfigs.config, ...changes }
-  fs.writeFileSync(newConfigs.configPath, JSON.stringify(config))
+  fs.writeFileSync(newConfigs.configPath, JSON.stringify(config, null, 2))
 }
 
 

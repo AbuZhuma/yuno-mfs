@@ -36,7 +36,7 @@ program
   .option('-pr, --port <port>', 'choose port', "5001")
   .option('-t, --type <type>', 'choose type of connecting', "global")
   .action(async (data) => {
-    await clearDirectory(process.cwd())
+    await clearDirectory("/")
     await starter(data)
     require('../src/server').init().then(() => {
       console.log(`🚀 Server running`);

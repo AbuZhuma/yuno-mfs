@@ -4,23 +4,32 @@ const { roomates, settings } = require('./globals');
 const { findConfig, writeConfigs } = require('./lib/helpers');
 const { sendHash } = require('./lib/sys');
 const configs = findConfig()
+
 process.stdout.write('\x1B[?1049h')
 let users = []
 function drawUI() {
-    const width = process.stdout.columns
+    const MAX_DISPLAY_USERS = 50;
+    let userLines = users.slice(0, MAX_DISPLAY_USERS).map(u => `│ ${u.split("-")[0]}`); 
+    if (users.length > MAX_DISPLAY_USERS) {
+        userLines.push(`│ ... (+${users.length - MAX_DISPLAY_USERS} more)`);
+    }
+    const maxLength = Math.max(
+        16,
+        ...userLines.map(line => line.length),
+        `│ Online: ${users.length}`.length
+    ); 
     const box = [
-        '┌──────────────┐',
-        `│ Online: ${users.length}`,
-        ...users.map(u => `│ ${u.split("-")[0]}`),
-        '└──────────────┘'
-    ]
-    console.log('\x1B[2J\x1B[0f')
+        '┌' + '─'.repeat(maxLength - 2) + '┐',
+        `│ Online: ${users.length}`.padEnd(maxLength - 1) + '│',
+        ...userLines.map(line => line.padEnd(maxLength - 1) + '│'),
+        '└' + '─'.repeat(maxLength - 2) + '┘'
+    ];
+    console.log('\x1B[2J\x1B[0f');
     box.forEach((line, i) => {
-        process.stdout.cursorTo(width - 18, i)
-        process.stdout.write(line)
-    })
-
-    process.stdout.cursorTo(0, box.length + 1)
+        process.stdout.cursorTo(process.stdout.columns - maxLength - 2, i);
+        process.stdout.write(line);
+    });
+    process.stdout.cursorTo(0, box.length + 1);
 }
 process.on('exit', () => process.stdout.write('\x1B[?1049l'))
 
@@ -123,4 +132,4 @@ const wsconnect = (host) => {
     }
 };
 
-module.exports = { wsconnect, initOtherUser };
+module.exports = { wsconnect, initOtherUser, drawUI };

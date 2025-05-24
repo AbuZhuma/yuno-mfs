@@ -11,7 +11,8 @@ const setRoomSettings = async (data) => {
             return console.log("Permission denied")
       }
       const opt = { ...isExist.data, password: data.password }
-      await fs.writeFile(".yuno/room.settings.json", JSON.stringify(opt))
+      await fs.writeFile(".yuno/room.settings.json", JSON.stringify(opt, null, 2))
+      console.log("Room settings writed!");
 }
 const setting = async () => {
       try {
