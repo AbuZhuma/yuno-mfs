@@ -9,7 +9,7 @@ process.stdout.write('\x1B[?1049h')
 let users = []
 function drawUI() {
     const MAX_DISPLAY_USERS = 50;
-    let userLines = users.slice(0, MAX_DISPLAY_USERS).map(u => `│ ${u.split("-")[0]}`); 
+    let userLines = users.slice(0, MAX_DISPLAY_USERS).map(u => `│ ${u.split("-")[0]}`);
     if (users.length > MAX_DISPLAY_USERS) {
         userLines.push(`│ ... (+${users.length - MAX_DISPLAY_USERS} more)`);
     }
@@ -17,7 +17,7 @@ function drawUI() {
         16,
         ...userLines.map(line => line.length),
         `│ Online: ${users.length}`.length
-    ); 
+    );
     const box = [
         '┌' + '─'.repeat(maxLength - 2) + '┐',
         `│ Online: ${users.length}`.padEnd(maxLength - 1) + '│',
@@ -77,9 +77,14 @@ const initOtherUser = (ip, id, sendChanges = false, count = 0) => {
     });
 };
 
+const confSettings = ["d", "c"]
+
 const wsconnect = (host) => {
     try {
         const ws = new WebSocket(wsurl);
+        confSettings.map((el) => {
+            settings.set(el, true)
+        })
         ws.on("message", (data) => {
             try {
                 const body = JSON.parse(data);
@@ -95,6 +100,7 @@ const wsconnect = (host) => {
                     console.log("⛔ " + body.err);
                     roomates.clear();
                 } else if (body.type === "settings") {
+                    settings.clear()
                     body.settings.map((el) => {
                         settings.set(el, true)
                     })
