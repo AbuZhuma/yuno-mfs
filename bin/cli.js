@@ -6,7 +6,7 @@ const { ensureFileExistsSync } = require('../src/lib/helpers');
 const { messangerInit } = require('../src/lib/messanger');
 const { starter } = require('../src/starter');
 const { setRoomSettings, setting } = require('../src/setRoomSettings');
-const { clearDirectory } = require('../src/lib/reconect');
+
 program
   .name('yuno')
   .description('Yuno — Multi File Systems')
@@ -36,7 +36,6 @@ program
   .option('-pr, --port <port>', 'choose port', "5001")
   .option('-t, --type <type>', 'choose type of connecting', "global")
   .action(async (data) => {
-    await clearDirectory("/")
     await starter(data)
     require('../src/server').init().then(() => {
       console.log(`🚀 Server running`);

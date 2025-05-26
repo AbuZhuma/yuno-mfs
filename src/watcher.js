@@ -2,7 +2,7 @@ const chokidar = require('chokidar');
 const { watcherIgnore } = require('./lib/configs');
 const fs = require("fs").promises;
 const { roomates, changesHash } = require('./globals');
-
+const WebSocket = require("ws")
 module.exports.watcher = chokidar.watch('./', {
       ignored: watcherIgnore,
       ignoreInitial: true,
