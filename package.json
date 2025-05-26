@@ -1,6 +1,6 @@
 {
   "name": "yuno-mfs",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Yuno — Multi File Systems",
   "main": "src/server.js",
   "type": "commonjs",
